@@ -4,7 +4,7 @@ import './index.css';
 import Router from './router';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Menu from './menu'
+
 
 
 ReactDOM.render(
