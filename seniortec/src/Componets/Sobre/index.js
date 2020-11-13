@@ -34,14 +34,20 @@ export default function Sobre() {
 
             <Container>
                 <Row>
-                    <Col className="fundador">
-                        <h1>Fundador</h1>
-                        <Image src={Logo} width="300" height="300" rounded />
-                    <Card className="fundador">
-                        <Card.Body>
-
-                        </Card.Body>
-                    </Card>
+                    <Col>
+                        <h1 className="fundadores">Fundadores</h1>
+                        <div className="fundadores">
+                            <Image style={{marginLeft:'1%'}} src={Logo} width="300" height="300" rounded />
+                            <Image style={{marginLeft:'8%'}} src={Logo} width="300" height="300" rounded />
+                        </div>
+                        <Card>
+                            <Card.Body>
+                                <Card.Title>Titulo</Card.Title>
+                                <Card.Text>
+                                    Texto
+                                </Card.Text>
+                            </Card.Body>
+                        </Card>
                     </Col>
                 </Row>
             </Container>

@@ -3,6 +3,7 @@
     margin-top: 3%;
     border-radius: 5px;
     height: 40%;
+    border-width: 0;
 }
 
 .cardHistoria{
@@ -16,4 +17,10 @@
 .fundador{
     text-align: center;
     margin-top: 4%;
+}
+
+.fundadores{
+    margin-top: 3%;
+    text-align: center;
+    margin-bottom: 10%;
 }
