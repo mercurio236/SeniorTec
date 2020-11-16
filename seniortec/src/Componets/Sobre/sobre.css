@@ -15,8 +15,14 @@
 }
 
 .fundador{
-    text-align: center;
-    margin-top: 4%;
+    margin-right: 50%;
+}
+
+.socio{
+    justify-content: center;
+    display: flex;
+    flex-direction: row;
+    
 }
 
 .fundadores{

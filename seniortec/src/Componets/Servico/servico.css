@@ -15,9 +15,12 @@
 }
 
 .cardsDeck{
-    margin-top: 4%;
+    margin-top: 3%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;  
+    flex-wrap: wrap;
 }
 
-.btnCards{
-    margin-left: 69%;
-}
+
+

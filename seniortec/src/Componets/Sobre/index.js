@@ -37,8 +37,10 @@ export default function Sobre() {
                     <Col>
                         <h1 className="fundadores">Fundadores</h1>
                         <div className="fundadores">
-                            <Image style={{marginLeft:'1%'}} src={Logo} width="300" height="300" rounded />
-                            <Image style={{marginLeft:'8%'}} src={Logo} width="300" height="300" rounded />
+                            <div className="socio">
+                                <Image src={Logo} width="300" height="300" rounded />
+                            </div>
+                            <h4>Arley Souto</h4>
                         </div>
                         <Card>
                             <Card.Body>

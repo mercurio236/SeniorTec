@@ -8,20 +8,24 @@ import { faFacebook, faYoutube, faLinkedinIn, faInstagram, faTwitter } from '@fo
 
 
 
-function Home({ history }) {
+function Home() {
     const [acaoModal, setAcaoModal] = useState(false);
-    const [info, setInfo] = useState([
-        { id: 1, info: 'aqui é o primeiro' },
-        { id: 2, info: 'aqui é o segundo' },
-        { id: 3, info: 'aqui é o terceiro' }
+    const [categoriaSelecionada, setCategoriaSelecionada] = useState([]);
+    const [categorias, setCategorias] = useState([
+        { id: 1, titulo: 'primeiro', info: 'aqui é o primeiro' },
+        { id: 2, titulo: 'segundo', info: 'aqui é o segundo' },
+        { id: 3, titulo: 'terceiro', info: 'aqui é o terceiro' }
     ])
 
 
 
-    function abrirModal(event) {
+    function abrirModal(categoria) {
         setAcaoModal(true)
+        setCategoriaSelecionada(categoria)
+
 
     }
+
 
     function fechaModal() {
         setAcaoModal(false)
@@ -71,38 +75,18 @@ function Home({ history }) {
                             <h1 className="titulo-sobre">Para você</h1>
                             <div>
                                 <CardDeck>
-                                    <Card>
-                                        <Card.Img variant="top" src={Logo} />
-                                        <Card.Body>
-                                            <Card.Title>Desenvolvimento</Card.Title>
-                                            <Card.Text>
-                                                Texto aqui
-                                            </Card.Text>
-                                            <Button onClick={abrirModal} variant="outline-dark" className="button-left">Mais</Button>
-                                        </Card.Body>
-                                    </Card>
-
-                                    <Card>
-                                        <Card.Img variant="top" src={Logo} />
-                                        <Card.Body>
-                                            <Card.Title>Desenvolvimento</Card.Title>
-                                            <Card.Text>
-                                                Texto aqui
-                                            </Card.Text>
-                                            <Button onClick={abrirModal} variant="outline-dark" className="button-left">Mais</Button>
-                                        </Card.Body>
-                                    </Card>
-
-                                    <Card>
-                                        <Card.Img variant="top" src={Logo} />
-                                        <Card.Body>
-                                            <Card.Title>Desenvolvimento</Card.Title>
-                                            <Card.Text>
-                                                Texto aqui
-                                            </Card.Text>
-                                            <Button onClick={abrirModal} variant="outline-dark" className="button-left">Mais</Button>
-                                        </Card.Body>
-                                    </Card>
+                                    {categorias.map((categoria) => (
+                                        <Card>
+                                            <Card.Img variant="top" src={Logo} />
+                                            <Card.Body>
+                                                <Card.Title>{categoria.titulo}</Card.Title>
+                                                <Card.Text>
+                                                    {categoria.info}
+                                                </Card.Text>
+                                                <Button onClick={() => { abrirModal(categoria) }} variant="outline-dark" className="button-left">Mais</Button>
+                                            </Card.Body>
+                                        </Card>
+                                    ))}
                                 </CardDeck>
 
 
@@ -145,10 +129,10 @@ function Home({ history }) {
 
             <Modal show={acaoModal} onHide={fechaModal}>
                 <Modal.Header closeButton>
-                    <Modal.Title>Informação</Modal.Title>
+                    <Modal.Title>{categoriaSelecionada.titulo}</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    {info.map(informa => <p>{informa.info}</p>)}
+                    <p>{categoriaSelecionada.info}</p>
 
                 </Modal.Body>
                 <Modal.Footer>
@@ -156,6 +140,7 @@ function Home({ history }) {
                 </Modal.Footer>
 
             </Modal>
+
             <footer className="footer">
                 <div className="logoFooter">
                     {/* <img src={LogoFooter} width="20" height="20" /> */}

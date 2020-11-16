@@ -1,11 +1,35 @@
-import React from 'react';
-import { Button, Container, Col, Row, Card, CardDeck } from 'react-bootstrap';
+import React, {useState} from 'react';
+import { Button, Container, Col, Row, Card, CardDeck, Modal } from 'react-bootstrap';
 import Logo from '../../img/logoMenor.png';
 import '../Servico/servico.css';
 import LogoFooter from '../../img/logoBrangoFooter.png';
 
 
+
 function Servicos() {
+    const [produtos, setProdutos] = useState([])
+    const [modalOpen, setModalOpen] = useState(false);
+    const [sobre, setSobre] = useState([
+        {id:0, titulo:'primeiro', corpo:'texto1', info:'texto1'},
+        {id:1, titulo:'segundo', corpo:'texto2', info:'texto2'},
+        {id:2, titulo:'terceiro', corpo:'texto3', info:'texto3'},
+        {id:3, titulo:'terceiro', corpo:'texto4', info:'texto4'},
+        {id:4, titulo:'terceiro', corpo:'texto5', info:'texto5'},
+        {id:5, titulo:'terceiro', corpo:'texto6', info:'texto6'},
+    ])
+    function modalAbrir(prod){
+        setModalOpen(true)
+        setProdutos(prod)
+        
+    }
+
+    function fechaModal(){
+        setModalOpen(false)
+    }
+
+
+
+    
     return (
         <div>
             <Container>
@@ -44,71 +68,21 @@ function Servicos() {
                 <Row>
                     <Col className="backProdutos">
                         <h2 style={{textAlign:'center', marginTop:'2%'}}>Produtos</h2>
-                    <CardDeck className="cardsDeck">
-                        <Card>
+                        
+                    <div className="cardsDeck">
+                        {sobre.map((produto) =>(
+                            <Card style={{width:'18rem', marginTop:'2%'}} >
                             <Card.Img src={Logo}/>
                             <Card.Body>
-                                <Card.Title>Titulo</Card.Title>
+                                <Card.Title>{produto.titulo}</Card.Title>
                                 <Card.Text>
                                     Texto aqui 
                                 </Card.Text>
-                                <Button className="btnCards" variant="outline-warning">Veja mais</Button>
+                                <Button onClick={() => {modalAbrir(produto)}} className="btnCards" variant="outline-warning">Veja mais</Button>
                             </Card.Body>
                         </Card>
-                        <Card>
-                            <Card.Img src={Logo}/>
-                            <Card.Body>
-                                <Card.Title>Titulo</Card.Title>
-                                <Card.Text>
-                                    Texto aqui 
-                                </Card.Text>
-                                <Button className="btnCards" variant="outline-warning">Veja mais</Button>
-                            </Card.Body>
-                        </Card>
-                        <Card>
-                            <Card.Img src={Logo}/>
-                            <Card.Body>
-                                <Card.Title>Titulo</Card.Title>
-                                <Card.Text>
-                                    Texto aqui 
-                                </Card.Text>
-                                <Button className="btnCards" variant="outline-warning">Veja mais</Button>
-                            </Card.Body>
-                        </Card>
-                    </CardDeck>
-
-                    <CardDeck className="cardsDeck">
-                        <Card>
-                            <Card.Img src={Logo}/>
-                            <Card.Body>
-                                <Card.Title>Titulo</Card.Title>
-                                <Card.Text>
-                                    Texto aqui 
-                                </Card.Text>
-                                <Button className="btnCards" variant="outline-warning">Veja mais</Button>
-                            </Card.Body>
-                        </Card>
-                        <Card>
-                            <Card.Img src={Logo}/>
-                            <Card.Body>
-                                <Card.Title>Titulo</Card.Title>
-                                <Card.Text>
-                                    Texto aqui 
-                                </Card.Text>
-                                <Button className="btnCards" variant="outline-warning">Veja mais</Button>
-                            </Card.Body>
-                        </Card>
-                        <Card>
-                            <Card.Img src={Logo}/>
-                            <Card.Body>
-                                <Card.Title>Titulo</Card.Title>
-                                <Card.Text>
-                                    Texto aqui 
-                                </Card.Text>
-                                <Button className="btnCards" variant="outline-warning">Veja mais</Button>
-                            </Card.Body>
-                        </Card>
-                    </CardDeck>
+                        ))}
+                    </div>
                     <br></br>
                     </Col>
                 </Row>
@@ -137,6 +111,17 @@ function Servicos() {
                     </Col>
                 </Row>
             </Container>
+            <Modal show={modalOpen} onHide={fechaModal}>
+                <Modal.Header closeButton>
+                        <Modal.Title>{produtos.titulo}</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                            {produtos.info}
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="outline-dark" onClick={fechaModal}>Sair</Button>
+                </Modal.Footer>
+            </Modal>
             <footer className="footer">
                 <div className="logoFooter">
                     {/* <img src={LogoFooter} width="50" height="50" /> */}
