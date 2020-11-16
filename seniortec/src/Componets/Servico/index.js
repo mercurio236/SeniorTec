@@ -8,6 +8,14 @@ import LogoFooter from '../../img/logoBrangoFooter.png';
 
 function Servicos() {
     const [produtos, setProdutos] = useState([])
+    const [sonhos, setSonhos] = useState([]);
+    const [facilidades, setFacilidades] = useState([])
+    const [moreFacilidades, setMoreFacilidades] = useState([
+        {id:0, title:'Facilidades', body:'Mais Facilidades'}
+    ])
+    const [realizaSonho, setRealizaSonho] = useState([
+        {id:0, title:'Construa seu sistema', body:'TEste'},
+    ])
     const [modalOpen, setModalOpen] = useState(false);
     const [sobre, setSobre] = useState([
         {id:0, titulo:'primeiro', corpo:'texto1', info:'texto1'},
@@ -17,10 +25,17 @@ function Servicos() {
         {id:4, titulo:'terceiro', corpo:'texto5', info:'texto5'},
         {id:5, titulo:'terceiro', corpo:'texto6', info:'texto6'},
     ])
+
+
+    
+
+
     function modalAbrir(prod){
         setModalOpen(true)
         setProdutos(prod)
-        
+        setSonhos(prod)
+        setFacilidades(prod)
+        return
     }
 
     function fechaModal(){
@@ -36,7 +51,11 @@ function Servicos() {
                 <Row>
                     <Col>
                         <div className="cardPosition">
-                            <Card className="bg-dark text-white">
+                            
+
+                            {
+                                realizaSonho.map((sonho) =>(
+                                    <Card className="bg-dark text-white">
                                 <Card.Img src={Logo} />
                                 <Card.ImgOverlay>
                                     <Card.Title>Seus Sonhos</Card.Title>
@@ -44,22 +63,28 @@ function Servicos() {
                                         Texto aqui
                                         
                                     </Card.Text>
-                                    <Button  variant="outline-warning">Saiba Mais</Button>
+                                    <Button onClick={() => {modalAbrir(sonho)}}  variant="outline-warning">Saiba Mais</Button>
                                 </Card.ImgOverlay>
                             </Card>
+                                ))
+                            }
                                 
                         </div>
                     </Col>
                     <Col className="cardPosition">
-                        <Card>
+                        {
+                            moreFacilidades.map((fa) =>(
+                                <Card>
                             <Card.Title style={{textAlign:'center', marginTop:'2%'}}>Facilidades</Card.Title>
                             <Card.Body>
                                 <Card.Text>
                                     Texto aqui
                                 </Card.Text>
                             </Card.Body>
-                                <Button className="btnCard" variant="outline-warning">Saiba Mais</Button>
+                                <Button onClick={() => {modalAbrir(fa)}} className="btnCard" variant="outline-warning">Saiba Mais</Button>
                         </Card>
+                            ))
+                        }
                     </Col>
                 </Row>
             </Container>
@@ -122,6 +147,32 @@ function Servicos() {
                     <Button variant="outline-dark" onClick={fechaModal}>Sair</Button>
                 </Modal.Footer>
             </Modal>
+
+            {/* <Modal show={modalOpen} onHide={fechaModal}>
+                <Modal.Header closeButton>
+                        <Modal.Title>{sonhos.title}</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                            {sonhos.body}
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button onClick={fechaModal} variant="outline-dark">Sair</Button>
+                    
+                </Modal.Footer>
+            </Modal>
+
+            <Modal show={modalOpen} onHide={fechaModal}>
+                <Modal.Header closeButton>
+                        <Modal.Title>{facilidades.title}</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                            {facilidades.body}
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button onClick={fechaModal} variant="outline-dark">Sair</Button>
+                </Modal.Footer>
+            </Modal> */}
+
             <footer className="footer">
                 <div className="logoFooter">
                     {/* <img src={LogoFooter} width="50" height="50" /> */}
