@@ -7,11 +7,16 @@ import LogoFooter from '../../img/logoBrangoFooter.png';
 
 
 function Servicos() {
-    const [produtos, setProdutos] = useState([])
     const [modal2, setModal2] = useState(false);
     const [modal3, setModal3] = useState(false);
+    const [modal4, setModal4] = useState(false);
+    const [sobMedida, setSobMedida] = useState([]);
+    const [produtos, setProdutos] = useState([])
     const [sonhos, setSonhos] = useState([]);
     const [facilidades, setFacilidades] = useState([])
+    const [medida, setMedida] = useState([
+        {id:0, title:'Construa', body:'Sob Medida'}
+    ])
     const [moreFacilidades, setMoreFacilidades] = useState([
         {id:0, title:'Facilidades', body:'Mais Facilidades'}
     ])
@@ -47,11 +52,18 @@ function Servicos() {
         setModal3(true)
     }
 
+    function SobMedida(sob){
+        setModal4(true)
+        setSobMedida(sob)
+
+    }
+
 
     function fechaModal(){
         setModalOpen(false)
         setModal2(false)
         setModal3(false)
+        setModal4(false)
     }
 
 
@@ -129,17 +141,21 @@ function Servicos() {
             <h1 style={{marginTop:'4%', textAlign:'center'}}>Sob Medidada</h1>
                 <Row className="backProdutos">
                     <Col>
-                    <Card className="cardsDeck">
+                    {
+                        medida.map((sob) =>(
+                            <Card className="cardsDeck">
                         <Card.Body>
                             <Card.Title>Titulo</Card.Title>
                             <Card.Img src={Logo}/>
                             <Card.Text>
                                 Texto aqui 
                             </Card.Text>
-                            <Button className="btnCards" variant="dark">Construa</Button>
+                            <Button onClick={() => {SobMedida(sob)}} className="btnCards" variant="dark">Construa</Button>
                         </Card.Body>
                     
                     </Card>
+                        ))
+                    }
                     <br></br>
                     </Col>
 
@@ -179,6 +195,18 @@ function Servicos() {
                 </Modal.Header>
                 <Modal.Body>
                             {facilidades.body}
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button onClick={fechaModal} variant="outline-dark">Sair</Button>
+                </Modal.Footer>
+            </Modal>
+
+            <Modal show={modal4} onHide={fechaModal}>
+                <Modal.Header closeButton>
+                        <Modal.Title>{sobMedida.title}</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                            {sobMedida.body}
                 </Modal.Body>
                 <Modal.Footer>
                     <Button onClick={fechaModal} variant="outline-dark">Sair</Button>

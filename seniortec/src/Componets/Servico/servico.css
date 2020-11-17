@@ -2,25 +2,22 @@
     margin-top: 5%;
 }
 
-.btnCard{
+.btnCard {
     width: 20%;
     height: 30%;
     margin-left: 75%;
 }
 
-.backProdutos{
+.backProdutos {
     margin-top: 4%;
     border-radius: 10px;
     background-image: linear-gradient(to bottom right, #FFF, #000);
 }
 
-.cardsDeck{
+.cardsDeck {
     margin-top: 1%;
     display: flex;
     align-items: center;
-    justify-content: space-evenly;  
+    justify-content: space-evenly;
     flex-wrap: wrap;
 }
-
-
-
