@@ -8,6 +8,8 @@ import LogoFooter from '../../img/logoBrangoFooter.png';
 
 function Servicos() {
     const [produtos, setProdutos] = useState([])
+    const [modal2, setModal2] = useState(false);
+    const [modal3, setModal3] = useState(false);
     const [sonhos, setSonhos] = useState([]);
     const [facilidades, setFacilidades] = useState([])
     const [moreFacilidades, setMoreFacilidades] = useState([
@@ -32,14 +34,24 @@ function Servicos() {
 
     function modalAbrir(prod){
         setModalOpen(true)
-        setProdutos(prod)
-        setSonhos(prod)
-        setFacilidades(prod)
-        return
+        setProdutos(prod)   
     }
+
+    function modalSonho(sonho){
+        setModal2(true)
+        setSonhos(sonho)
+    }
+
+    function modalFelicidade(f){
+        setFacilidades(f)
+        setModal3(true)
+    }
+
 
     function fechaModal(){
         setModalOpen(false)
+        setModal2(false)
+        setModal3(false)
     }
 
 
@@ -63,7 +75,7 @@ function Servicos() {
                                         Texto aqui
                                         
                                     </Card.Text>
-                                    <Button onClick={() => {modalAbrir(sonho)}}  variant="outline-warning">Saiba Mais</Button>
+                                    <Button onClick={() => {modalSonho(sonho)}}  variant="outline-warning">Saiba Mais</Button>
                                 </Card.ImgOverlay>
                             </Card>
                                 ))
@@ -81,7 +93,7 @@ function Servicos() {
                                     Texto aqui
                                 </Card.Text>
                             </Card.Body>
-                                <Button onClick={() => {modalAbrir(fa)}} className="btnCard" variant="outline-warning">Saiba Mais</Button>
+                                <Button onClick={() => {modalFelicidade(fa)}} className="btnCard" variant="outline-warning">Saiba Mais</Button>
                         </Card>
                             ))
                         }
@@ -148,7 +160,7 @@ function Servicos() {
                 </Modal.Footer>
             </Modal>
 
-            {/* <Modal show={modalOpen} onHide={fechaModal}>
+            <Modal show={modal2} onHide={fechaModal}>
                 <Modal.Header closeButton>
                         <Modal.Title>{sonhos.title}</Modal.Title>
                 </Modal.Header>
@@ -161,7 +173,7 @@ function Servicos() {
                 </Modal.Footer>
             </Modal>
 
-            <Modal show={modalOpen} onHide={fechaModal}>
+            <Modal show={modal3} onHide={fechaModal}>
                 <Modal.Header closeButton>
                         <Modal.Title>{facilidades.title}</Modal.Title>
                 </Modal.Header>
@@ -171,7 +183,7 @@ function Servicos() {
                 <Modal.Footer>
                     <Button onClick={fechaModal} variant="outline-dark">Sair</Button>
                 </Modal.Footer>
-            </Modal> */}
+            </Modal>
 
             <footer className="footer">
                 <div className="logoFooter">
