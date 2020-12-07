@@ -2,9 +2,13 @@ import React, { useState } from 'react';
 import { Button, Container, Col, Row, Carousel, Card, CardDeck, Modal } from 'react-bootstrap';
 import "../Home/home.css";
 import Logo from '../../img/logoMenor.png';
-import LogoFooter from '../../img/logoBrangoFooter.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebook, faYoutube, faLinkedinIn, faInstagram, faTwitter } from '@fortawesome/free-brands-svg-icons';
+
+import ImgInt from '../../img/ideias.png';
+import ImgEvo from '../../img/evolucao.png';
+import CodigInt from '../../img/Codigo-inteligente.png';
+import ImgFoco from '../../img/foco.png';
 
 
 
@@ -12,9 +16,9 @@ function Home() {
     const [acaoModal, setAcaoModal] = useState(false);
     const [categoriaSelecionada, setCategoriaSelecionada] = useState([]);
     const [categorias, setCategorias] = useState([
-        { id: 1, titulo: 'primeiro', info: 'aqui é o primeiro' },
-        { id: 2, titulo: 'segundo', info: 'aqui é o segundo' },
-        { id: 3, titulo: 'terceiro', info: 'aqui é o terceiro' }
+        { id: 1, titulo: 'Adaptação', info: 'Sempre em evolução, automação é nossa prioridade.', modal: '', Logo: ImgEvo },
+        { id: 2, titulo: 'Nossas ideias', info: 'Para que possamos melhorar o mundo, nos esforçamos para ter ideias ineditas', modal: '', Logo: ImgInt },
+        { id: 3, titulo: 'Projetos', info: 'Todos nossos projeto são feitos pelos melhores profissionais do mercado', modal: '', Logo: CodigInt }
     ])
 
 
@@ -37,29 +41,30 @@ function Home() {
         <div>
             <Container fluid="md" className="home-img">
                 <Row >
-                    <Col  >
+                    <Col sm={12} >
                         <Carousel>
-                            <Carousel.Item>
+                            <Carousel.Item style={{ marginLeft: '14%' }}>
                                 <img
                                     className='d-block w-20'
-                                    src={Logo}
+                                    src={ImgInt}
                                     alt="Primeira imagem"
+
                                 />
                             </Carousel.Item>
 
-                            <Carousel.Item>
+                            <Carousel.Item style={{ marginLeft: '14%' }}>
                                 <img
                                     className='d-block w-20'
-                                    src={Logo}
+                                    src={ImgEvo}
                                     alt="Primeira imagem"
                                 />
 
                             </Carousel.Item>
 
-                            <Carousel.Item>
+                            <Carousel.Item style={{ marginLeft: '14%' }}>
                                 <img
                                     className='d-block w-20'
-                                    src={Logo}
+                                    src={CodigInt}
                                     alt="Primeira imagem"
                                 />
                             </Carousel.Item>
@@ -69,7 +74,7 @@ function Home() {
             </Container>
 
             <Container >
-                <Col  >
+                <Col sm={12} >
                     <Row >
                         <div >
                             <h1 className="titulo-sobre">Para você</h1>
@@ -77,13 +82,13 @@ function Home() {
                                 <CardDeck>
                                     {categorias.map((categoria) => (
                                         <Card>
-                                            <Card.Img variant="top" src={Logo} />
+                                            <Card.Img variant="top" src={categoria.Logo} />
                                             <Card.Body>
                                                 <Card.Title>{categoria.titulo}</Card.Title>
                                                 <Card.Text>
                                                     {categoria.info}
                                                 </Card.Text>
-                                                <Button onClick={() => { abrirModal(categoria) }} variant="outline-dark" className="button-left">Mais</Button>
+                                                <Button onClick={() => { abrirModal(categoria) }} variant="outline-dark" >Mais</Button>
                                             </Card.Body>
                                         </Card>
                                     ))}
@@ -98,11 +103,11 @@ function Home() {
 
             <Container>
                 <Row>
-                    <Col>
+                    <Col sm={12}>
                         <div>
                             <h1 className="titulo-sobre">Estamos focados na evolução</h1>
                             <div className="home-img">
-                                <img src={Logo} />
+                                    <Card.Img src={ImgFoco}/>
                             </div>
                         </div>
                     </Col>
@@ -111,16 +116,16 @@ function Home() {
 
             <Container>
                 <Row>
-                    <Col>
+                    <Col sm={12}>
                         <div>
                             <h1 className="titulo-sobre">Nos acompanhe em nossas redes</h1>
                         </div>
                         <div className="redes-sociais">
-                            <FontAwesomeIcon icon={faLinkedinIn} size="4x" style={{ marginLeft: '3%', cursor: 'pointer' }} />
-                            <FontAwesomeIcon icon={faYoutube} size="4x" style={{ marginLeft: '3%', cursor: 'pointer' }} />
-                            <FontAwesomeIcon icon={faInstagram} size="4x" style={{ marginLeft: '3%', cursor: 'pointer' }} />
-                            <FontAwesomeIcon icon={faFacebook} size="4x" style={{ marginLeft: '3%', cursor: 'pointer' }} />
-                            <FontAwesomeIcon icon={faTwitter} size="4x" style={{ marginLeft: '3%', cursor: 'pointer' }} />
+                            <FontAwesomeIcon icon={faLinkedinIn} size="3x" style={{ marginLeft: '3%', cursor: 'pointer' }} />
+                            <FontAwesomeIcon icon={faYoutube} size="3x" style={{ marginLeft: '3%', cursor: 'pointer' }} />
+                            <FontAwesomeIcon icon={faInstagram} size="3x" style={{ marginLeft: '3%', cursor: 'pointer' }} />
+                            <FontAwesomeIcon icon={faFacebook} size="3x" style={{ marginLeft: '3%', cursor: 'pointer' }} />
+                            <FontAwesomeIcon icon={faTwitter} size="3x" style={{ marginLeft: '3%', cursor: 'pointer' }} />
 
                         </div>
                     </Col>
@@ -132,7 +137,7 @@ function Home() {
                     <Modal.Title>{categoriaSelecionada.titulo}</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <p>{categoriaSelecionada.info}</p>
+                    <p>{categoriaSelecionada.modal}</p>
 
                 </Modal.Body>
                 <Modal.Footer>

@@ -8,19 +8,22 @@ function Menu({ history }) {
 
     return (
         <div>
-            <Navbar bg="white" variant="light" style={{ borderRadius: '10px' }}>
+            <Navbar collapseOnSelect expand="lg" bg="white" variant="light" style={{ borderRadius: '10px' }}>
                 <Navbar.Brand href="/">
                     <img src={Logo} width="150" height="108" />
                 </Navbar.Brand>
-                <Nav className="menu">
-                    <Button variant='outline-dark' id="button" href="/">Home</Button>
-                    <Button variant='outline-dark' id="button" href="/servicos">Serviços</Button>
-                    <Button variant='outline-dark' id="button" href="/sobre">Sobre</Button>
-                    <Button variant='outline-dark' id="button" href="/contato">Contato</Button>
-                </Nav>
+                <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+                <Navbar.Collapse id="responsive-navbar-nav">
+                    <Nav className="menu" >
+                        <Nav.Link href="/" id="button">Home</Nav.Link>
+                        <Nav.Link id="button" href="/servicos">Serviços</Nav.Link>
+                        <Nav.Link id="button" href="/sobre">Sobre</Nav.Link>
+                        <Nav.Link id="button" href="/contato">Contato</Nav.Link>
+                    </Nav>
+                </Navbar.Collapse>
             </Navbar>
 
-            
+
         </div>
 
 
