@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button, Container, Col, Row, Carousel, Card, CardDeck, Modal } from 'react-bootstrap';
 import "../Home/home.css";
-import Logo from '../../img/logoMenor.png';
+import firebase from '../../firebaseConnection';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebook, faYoutube, faLinkedinIn, faInstagram, faTwitter } from '@fortawesome/free-brands-svg-icons';
 
@@ -12,14 +12,28 @@ import ImgFoco from '../../img/foco.png';
 
 
 
+
 function Home() {
     const [acaoModal, setAcaoModal] = useState(false);
     const [categoriaSelecionada, setCategoriaSelecionada] = useState([]);
-    const [categorias, setCategorias] = useState([
-        { id: 1, titulo: 'Adaptação', info: 'Sempre em evolução, automação é nossa prioridade.', modal: '', Logo: ImgEvo },
-        { id: 2, titulo: 'Nossas ideias', info: 'Para que possamos melhorar o mundo, nos esforçamos para ter ideias ineditas', modal: '', Logo: ImgInt },
-        { id: 3, titulo: 'Projetos', info: 'Todos nossos projeto são feitos pelos melhores profissionais do mercado', modal: '', Logo: CodigInt }
-    ])
+    const [categorias, setCategorias] = useState([])
+
+    useEffect(() => {
+
+        consulta();
+    }, [])
+
+    function consulta() {
+        var db = firebase.firestore();
+        db.collection('titulos')
+            .get()
+            .then(querySnapshot => {
+                querySnapshot.forEach(doc => {
+                    setCategorias(prev => ([...prev, doc.data()]))
+                })
+            })
+        setCategorias([])
+    }
 
 
 
@@ -37,12 +51,15 @@ function Home() {
 
 
 
+
+
     return (
         <div>
+
             <Container fluid="md" className="home-img">
                 <Row >
                     <Col sm={12} >
-                        <Carousel>
+                        <Carousel style={{ width: '100%' }}>
                             <Carousel.Item style={{ marginLeft: '14%' }}>
                                 <img
                                     className='d-block w-20'
@@ -82,12 +99,13 @@ function Home() {
                                 <CardDeck>
                                     {categorias.map((categoria) => (
                                         <Card>
-                                            <Card.Img variant="top" src={categoria.Logo} />
+                                            <Card.Img variant="top" src={categoria.img} />
                                             <Card.Body>
                                                 <Card.Title>{categoria.titulo}</Card.Title>
                                                 <Card.Text>
                                                     {categoria.info}
                                                 </Card.Text>
+
                                                 <Button onClick={() => { abrirModal(categoria) }} variant="outline-dark" >Mais</Button>
                                             </Card.Body>
                                         </Card>
@@ -107,7 +125,7 @@ function Home() {
                         <div>
                             <h1 className="titulo-sobre">Estamos focados na evolução</h1>
                             <div className="home-img">
-                                    <Card.Img src={ImgFoco}/>
+                                <Card.Img src={ImgFoco} />
                             </div>
                         </div>
                     </Col>
@@ -141,6 +159,7 @@ function Home() {
 
                 </Modal.Body>
                 <Modal.Footer>
+                    <Button variant="outline-success" href="/contato">Entrar em contato</Button>
                     <Button variant="outline-dark" onClick={fechaModal}>Sair</Button>
                 </Modal.Footer>
 
