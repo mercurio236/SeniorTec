@@ -23,7 +23,7 @@ function Home() {
         consulta();
     }, [])
 
-    function consulta() {
+    async function consulta() {
         var db = firebase.firestore();
         db.collection('titulos')
             .get()

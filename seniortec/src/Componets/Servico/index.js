@@ -1,16 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button, Container, Col, Row, Card, CardDeck, Modal } from 'react-bootstrap';
-import Logo from '../../img/logoMenor.png';
 import '../Servico/servico.css';
-import LogoFooter from '../../img/logoBrangoFooter.png';
+import firebase from '../../firebaseConnection';
 
 
-import ImgSonho from '../../img/sonhos.png';
-import ImgFacilidades from '../../img/facilidades.png';
-
-import ImgDesign from '../../img/design.png';
-import BI from '../../img/BI.png';
-import ImgDev from '../../img/desenvolvimento.png';
 import Sua from '../../img/apenasSua.png';
 
 
@@ -18,6 +11,7 @@ function Servicos() {
     const [modal2, setModal2] = useState(false);
     const [modal3, setModal3] = useState(false);
     const [modal4, setModal4] = useState(false);
+
     const [sobMedida, setSobMedida] = useState([]);
     const [produtos, setProdutos] = useState([])
     const [sonhos, setSonhos] = useState([]);
@@ -25,20 +19,60 @@ function Servicos() {
     const [medida, setMedida] = useState([
         { id: 0, title: 'Construa', body: 'O mundo não precisa apenas de programadores, precisamos de criatividade. E se você é esse tipo de pessoa que tem essa criatividade venha saber um pouco mais como conseguir criar seu próprio programa.' }
     ])
-    const [moreFacilidades, setMoreFacilidades] = useState([
-        { id: 0, title: 'Facilidades', body: 'Garantimos com mais facilidade a entrega do seu produto, fazemos isso com o máximo de profissionalismo possível.' }
-    ])
-    const [realizaSonho, setRealizaSonho] = useState([
-        { id: 0, title: 'Construa seu sistema', body: 'Já pensou em ter um sistema feito por você, sob medida. O seu negocio fica mais diferenciado com um sistema onde é possível atender uma grande massa de pessoas com agilidade. Hoje isso é muito importante e possível, basta entrar em contato, não perca tempo.' },
-    ])
+    const [moreFacilidades, setMoreFacilidades] = useState([])
+    const [realizaSonho, setRealizaSonho] = useState([])
     const [modalOpen, setModalOpen] = useState(false);
-    const [sobre, setSobre] = useState([
-        { id: 0, titulo: 'Design', corpo: 'Um bom produto precisa de uma boa apresntação.', info: 'Com um design atrativo e feito com toda harmonização traz vários clientes, já pensou o seu negocio crescer só por causa da aparência? Isso é possível, entre em contato conosco para saber mais.', img: ImgDesign },
-        { id: 1, titulo: 'Desenvolvimento', corpo: 'Desenvolvimento de qualquer tecnologia.', info: 'Para o seu negocio que recebe bastante de dados de vários ou usuários ou seu sistemas ainda não recebe tantos assim e você quer fazer o controle de todos os dados não precisa quebrar a cabeça fazemos isso por você, entre em contato.', img: ImgDev },
-        { id: 2, titulo: 'Business Inteligencia(BI)', corpo: 'Analises BI para melhorar seu negocio.', info: 'Uma boa aplicação exige tudo o que tem de melhor, nossos profissionais em engenharia podem garantir uma boa aplicação para o seu negocio. Não deixe para depois, saiba mais entrando em contato.', img: BI }
-    ])
+    const [sobre, setSobre] = useState([])
+
+    useEffect(() => {
+        handleServicos();//vai carregar a pagina com as info
+        handleFacilidades();
+        handleSobre();
+        handleSobMedida();
+    }, [])
 
 
+    function handleServicos() {
+        let db = firebase.firestore();
+        db.collection('servicos')
+            .doc('z24Eum0LiRk6j7iSHzfK')
+            .get()
+            .then(documentSnapshot => {
+                setRealizaSonho([documentSnapshot.data()])
+            })
+    }
+
+    function handleFacilidades() {
+        let db = firebase.firestore();
+        db.collection('servicos')
+            .doc('SjkohglqcKB0L3VfTG96')
+            .get()
+            .then(documentSnapshot => {
+                setMoreFacilidades([documentSnapshot.data()])
+            })
+    }
+
+    function handleSobMedida() {
+        let db = firebase.firestore()
+        db.collection('servicos')
+            .doc('6gqVf3tBRyry4QpNrGvm')
+            .get()
+            .then(documentSnapshot => {
+                setMedida([documentSnapshot.data()])
+            })
+    }
+
+    function handleSobre() {
+        let db = firebase.firestore();
+        db.collection('servicos/ORurw8gTzqXjPUX2cN3T/sobre')
+            .get()
+            .then(querySnapshot => {
+                querySnapshot.forEach(doc => {
+                    setSobre(prev => [...prev, doc.data()])
+                })
+            })
+        setSobre([]);
+    }
 
 
 
@@ -76,6 +110,7 @@ function Servicos() {
 
     return (
         <div>
+
             <Container>
                 <Row>
                     <Col sm={6}>
@@ -85,9 +120,9 @@ function Servicos() {
                             {
                                 realizaSonho.map((sonho) => (
                                     <Card className="bg-dark text-white">
-                                        <Card.Img src={ImgSonho} />
+                                        <Card.Img src={sonho.img} />
                                         <Card.ImgOverlay>
-                                            <Card.Title>Seus Sonhos</Card.Title>
+                                            <Card.Title>{sonho.titulo}</Card.Title>
                                             <Card.Text>
                                                 Conosco tudo pode ser possível, basta nos procurar para que possa acontecer.
                                     </Card.Text>
@@ -104,9 +139,9 @@ function Servicos() {
                         {
                             moreFacilidades.map((fa) => (
                                 <Card style={{ marginTop: '5%' }}>
-                                    <Card.Title style={{ textAlign: 'center', marginTop: '1%' }}>Facilidades</Card.Title>
+                                    <Card.Title style={{ textAlign: 'center', marginTop: '1%' }}>{fa.titulo}</Card.Title>
                                     <Card.Body>
-                                        <Card.Img src={ImgFacilidades} style={{ marginBottom: '2%' }} />
+                                        <Card.Img src={fa.img} style={{ marginBottom: '2%' }} />
                                         <Button onClick={() => { modalFelicidade(fa) }} variant="outline-warning">Saiba Mais</Button>
                                     </Card.Body>
 
@@ -129,7 +164,7 @@ function Servicos() {
                                     <Card.Body>
                                         <Card.Title>{produto.titulo}</Card.Title>
                                         <Card.Text>
-                                            {produto.corpo}
+                                            {produto.info}
                                         </Card.Text>
                                         <Button onClick={() => { modalAbrir(produto) }} className="btnCards" variant="outline-warning">Veja mais</Button>
                                     </Card.Body>
@@ -150,9 +185,9 @@ function Servicos() {
                                 <Card className="cardsDeck">
                                     <Card.Body>
                                         <Card.Title>Sua Tecnologia</Card.Title>
-                                        <Card.Img src={Sua} />
+                                        <Card.Img src={sob.img} />
                                         <Card.Text>
-                                            Já pensou em criar uma tecnologia que é só sua? Uma tecnologia que você inventou.
+                                            {sob.info}
                                         </Card.Text>
                                         <Button onClick={() => { SobMedida(sob) }} className="btnCards" variant="dark">Construa</Button>
                                     </Card.Body>
@@ -165,8 +200,8 @@ function Servicos() {
 
                     <Col sm={6}>
                         <h2 style={{ color: '#FFF', marginTop: '3%', textAlign: 'center' }}>Uma tecnologia só sua</h2>
-                        <h4 style={{color:'#FFF', textAlign:'center'}}>Já imaginou varia pessoas usando uma tecnologia que você desenvolveu? Que você pensou mas não sabe como 
-                         tirar do papel. Isso pode ser possível, para que isso aconteça basta entrar em contato para saber mais, não precisa ter compromisso. 
+                        <h4 style={{ color: '#FFF', textAlign: 'center' }}>Já imaginou varia pessoas usando uma tecnologia que você desenvolveu? Que você pensou mas não sabe como
+                        tirar do papel. Isso pode ser possível, para que isso aconteça basta entrar em contato para saber mais, não precisa ter compromisso.
                          Estamos aqui para tirar suas duvidas.</h4>
                     </Col>
                 </Row>
@@ -176,7 +211,7 @@ function Servicos() {
                     <Modal.Title>{produtos.titulo}</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    {produtos.info}
+                    {produtos.modal}
                 </Modal.Body>
                 <Modal.Footer>
                     <Button href="/contato" variant="outline-success">Entrar em contato</Button>
@@ -186,10 +221,10 @@ function Servicos() {
 
             <Modal show={modal2} onHide={fechaModal}>
                 <Modal.Header closeButton>
-                    <Modal.Title>{sonhos.title}</Modal.Title>
+                    <Modal.Title>{sonhos.titulo}</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    {sonhos.body}
+                    {sonhos.modal}
                 </Modal.Body>
                 <Modal.Footer>
                     <Button href="/contato" variant="outline-success">Entrar em contato</Button>
@@ -199,10 +234,10 @@ function Servicos() {
 
             <Modal show={modal3} onHide={fechaModal}>
                 <Modal.Header closeButton>
-                    <Modal.Title>{facilidades.title}</Modal.Title>
+                    <Modal.Title>{facilidades.titulo}</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    {facilidades.body}
+                    {facilidades.modal}
                 </Modal.Body>
                 <Modal.Footer>
                     <Button href="/contato" variant="outline-success">Entrar em contato</Button>
@@ -212,10 +247,10 @@ function Servicos() {
 
             <Modal show={modal4} onHide={fechaModal}>
                 <Modal.Header closeButton>
-                    <Modal.Title>{sobMedida.title}</Modal.Title>
+                    <Modal.Title>{sobMedida.titulo}</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    {sobMedida.body}
+                    {sobMedida.modal}
                 </Modal.Body>
                 <Modal.Footer>
                     <Button href="/contato" variant="outline-success">Entrar em contato</Button>
