@@ -1,5 +1,5 @@
 .cardPosition {
-    margin-top: 5%;
+    margin-top: 5.1%;
 }
 
 .btnCard {
@@ -15,7 +15,7 @@
 }
 
 .cardsDeck {
-    margin-top: 1%;
+    margin-top: 4%;
     display: flex;
     align-items: center;
     justify-content: space-evenly;
