@@ -14,15 +14,9 @@
     
 }
 
-.fundador{
-    margin-right: 50%;
-}
-
-.socio{
-    justify-content: center;
-    display: flex;
+.area{
     flex-direction: row;
-    
+    justify-content: center;
 }
 
 .fundadores{
