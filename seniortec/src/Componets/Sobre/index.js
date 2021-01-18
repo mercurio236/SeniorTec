@@ -12,20 +12,16 @@ export default function Sobre() {
         <div>
             <Container fluid="sm">
                 <Row>
-                    <Col className="historia" sm={12}>
-                        <Card className="cardHistoria">
-                            <Card.Body>
-                               
-                                <Card.Img src={ImgSobre} />
-                            </Card.Body>
-                        </Card>
-                        <br></br>
 
+                    <Col sm={12}>
+
+                        <Card.Img src={ImgSobre} style={{ marginBottom: '5%', marginTop: '5%' }} />
+                        <br></br>
                         <Card>
                             <Card.Body>
                                 <Card.Title>Sobre</Card.Title>
                                 <Card.Text>
-                                Em 2019 foi idealizado uma empresa onde fosse possível criar qualquer
+                                    Em 2019 foi idealizado uma empresa onde fosse possível criar qualquer
                                     tipo de tecnologia. Onde todos na
                                     empresa tivessem a liberdade para poder criar e idealizar
                                     novas tecnologias. Varias empresas no Brasil não estão em busca de novas
@@ -65,7 +61,7 @@ export default function Sobre() {
                                     <Card.Body>
                                         <Card.Title>CEO</Card.Title>
                                         <Card.Text>
-                                            <b>Arley Souto</b> sempre em busca de novas tecnologias e ideias que possam mudar o mundo. 
+                                            <b>Arley Souto</b> sempre em busca de novas tecnologias e ideias que possam mudar o mundo.
                                             A facilidade faz qualquer homem chegar longe.
                                             Todas ideias são bem vindas, se isso faz crescer e ir longe aposte na sua ideia e vá
                                              em frente sem medo de dar errado, só dará errado se você desistir.
@@ -81,7 +77,7 @@ export default function Sobre() {
                                         <Card.Text>
                                             <b>Luiza Cezário</b> um projeto bem organizado é um produto bem feito, sempre devemos focar na organização
                                              dessa forma podemos gerar um projeto de qualidade.
-                                                O foco de tudo é a organização e a disciplina, 
+                                                O foco de tudo é a organização e a disciplina,
                                                 devemos nos esforçar todos os dias para que possamos entregar algo de qualidade.
                                         </Card.Text>
                                     </Card.Body>

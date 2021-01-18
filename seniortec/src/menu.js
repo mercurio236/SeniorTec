@@ -18,7 +18,6 @@ function Menu({ history }) {
                         <Nav.Link href="/" id="button">Home</Nav.Link>
                         <Nav.Link id="button" href="/servicos">Serviços</Nav.Link>
                         <Nav.Link id="button" href="/sobre">Sobre</Nav.Link>
-                        <Nav.Link id="button" href="/contato">Contato</Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>
