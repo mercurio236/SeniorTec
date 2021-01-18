@@ -258,12 +258,7 @@ function Servicos() {
                 </Modal.Footer>
             </Modal>
 
-            <footer className="footer">
-                <div className="logoFooter">
-                    {/* <img src={LogoFooter} width="50" height="50" /> */}
-                    <h3>SeniorTec®</h3>
-                </div>
-            </footer>
+            
         </div>
 
 

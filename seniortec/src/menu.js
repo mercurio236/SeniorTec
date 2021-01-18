@@ -1,6 +1,7 @@
 import React from 'react';
 import { Nav, Navbar, Button } from 'react-bootstrap';
 import Logo from './img/LogoNova.png';
+import Footer from '../src/footer'
 
 
 
@@ -22,10 +23,10 @@ function Menu({ history }) {
                 </Navbar.Collapse>
             </Navbar>
 
-
+            
         </div>
 
-
+        
     )
 }
 

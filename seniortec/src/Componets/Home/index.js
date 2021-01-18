@@ -9,6 +9,7 @@ import ImgInt from '../../img/ideias.png';
 import ImgEvo from '../../img/evolucao.png';
 import CodigInt from '../../img/Codigo-inteligente.png';
 import ImgFoco from '../../img/foco.png';
+import Footer from '../../footer';
 
 
 
@@ -165,12 +166,7 @@ function Home() {
 
             </Modal>
 
-            <footer className="footer">
-                <div className="logoFooter">
-                    {/* <img src={LogoFooter} width="20" height="20" /> */}
-                    <h3>SeniorTec®</h3>
-                </div>
-            </footer>
+            
         </div>
     );
 
