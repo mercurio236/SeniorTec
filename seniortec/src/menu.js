@@ -10,7 +10,7 @@ function Menu({ history }) {
         <div>
             <Navbar collapseOnSelect expand="lg" bg="white" variant="light" style={{ borderRadius: '10px' }}>
                 <Navbar.Brand href="/">
-                    <img src={Logo} width="150" height="108" />
+                    <img src={Logo} width="110" height="80" />
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">

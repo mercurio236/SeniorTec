@@ -1,10 +1,41 @@
 import React, { useState } from 'react';
-import { Container, Row, Col, Form, Card, Button } from 'react-bootstrap';
+import { Container, Row, Form, Col, Card, Button } from 'react-bootstrap';
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
 
 import '../Contato/contato.css';
 
 export default function Contato() {
     const [nome, setNome] = useState('');
+
+    
+        const formik = useFormik({
+            initialValues:{
+                nome:'',
+                email:'',
+                celular:'',
+                msg:''
+            },
+            validationSchema: Yup.object({
+                nome: Yup.string()
+                .max(20, 'Deve connter pelo menos 20 letras')
+                .required('Requerido'),
+
+                email: Yup.string().email('Endereço de E-mail invalido').required('Requerido'),
+
+                celular: Yup.number()
+                .max(11, 'Deve conter 11 digitos')
+                .required('Campo é obrigatorio'),
+
+                msg: Yup.string()
+                .max(200, 'Preencha este campo')
+                .required('Este campo tem que ser preenchido')
+            }),
+            onSubmit: values => {
+                alert(JSON.stringify(values, null, 2));
+            },
+        })
+    
 
     function enviarEmail() {
         return
@@ -15,12 +46,16 @@ export default function Contato() {
                 <Row>
                     <Col sm={6}>
                         <h1 style={{ textAlign: 'center' }}>Mande um E-mail</h1>
-                        <Form className="group">
+                        <Form className="group" onSubmit={formik.handleSubmit}>
                             <Form.Group>
-                                <Form.Control className="group" type="text" placeholder="Nome Copleto" autoFocus />
-                                <Form.Control className="group" type="email" placeholder="E-mail" />
-                                <Form.Control className="group" type="number" placeholder="Celular" />
-                                <Form.Control className="group" placeholder="Deixe sua mensagem" as="textarea" row={3} />
+                                <Form.Control id="nome" className="group" type="text" placeholder="Nome Copleto" autoFocus {...formik.getFieldProps('nome')} />
+                                {formik.touched.nome && formik.errors.nome ? (<div>{formik.errors.nome}</div>) : null}
+                                <Form.Control id="email" className="group" type="email" placeholder="E-mail" {...formik.getFieldProps('email')} />
+                                {formik.touched.email && formik.errors.email ? (<div>{formik.errors.email}</div>):  null}
+                                <Form.Control id="celular" className="group" type="number" placeholder="Celular" {...formik.getFieldProps('celular')}/>
+                                {formik.touched.celular && formik.errors.celular ? (<div>{formik.errors.celular}</div>): null}
+                                <Form.Control id ="msg" className="group" placeholder="Deixe sua mensagem" as="textarea" row={3} {...formik.getFieldProps('msg')} />
+                                {formik.touched.msg && formik.errors.celular ? (<div>{formik.errors.msg}</div>) : null}
                             </Form.Group>
                             <Button variant="outline-dark" type="submit">Enviar</Button>
                         </Form>

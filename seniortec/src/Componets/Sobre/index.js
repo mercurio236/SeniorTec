@@ -15,7 +15,7 @@ export default function Sobre() {
                     <Col className="historia" sm={12}>
                         <Card className="cardHistoria">
                             <Card.Body>
-                                <Card.Title>Ideias</Card.Title>
+                               
                                 <Card.Img src={ImgSobre} />
                             </Card.Body>
                         </Card>
