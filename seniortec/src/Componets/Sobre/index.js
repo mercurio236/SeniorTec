@@ -7,6 +7,10 @@ import fundador from '../../img/fundador.jpg';
 import Socio from '../../img/Socio.jpeg';
 import Colaboradora from '../../img/Colaboradora.jpeg';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFacebook, faYoutube, faLinkedinIn, faInstagram, faTwitter } from '@fortawesome/free-brands-svg-icons';
+
+
 export default function Sobre() {
     return (
         <div>
@@ -54,6 +58,11 @@ export default function Sobre() {
                                             Sempre disposto a qualquer desafio, basta lançar o desafio e esperar o resultado incrível.
 
                                         </Card.Text>
+                                        <FontAwesomeIcon icon={faLinkedinIn} size="2x" style={{ marginLeft: '3%', cursor: 'pointer' }} />
+                                        <FontAwesomeIcon icon={faYoutube} size="2x" style={{ marginLeft: '3%', cursor: 'pointer' }} />
+                                        <FontAwesomeIcon icon={faInstagram} size="2x" style={{ marginLeft: '3%', cursor: 'pointer' }} />
+                                        <FontAwesomeIcon icon={faFacebook} size="2x" style={{ marginLeft: '3%', cursor: 'pointer' }} />
+                                        <FontAwesomeIcon icon={faTwitter} size="2x" style={{ marginLeft: '3%', cursor: 'pointer' }} />
                                     </Card.Body>
                                 </Card>
                                 <Card>
@@ -67,7 +76,11 @@ export default function Sobre() {
                                              em frente sem medo de dar errado, só dará errado se você desistir.
 
                                         </Card.Text>
-
+                                        <FontAwesomeIcon icon={faLinkedinIn} size="2x" style={{ marginLeft: '3%', cursor: 'pointer' }} />
+                                        <FontAwesomeIcon icon={faYoutube} size="2x" style={{ marginLeft: '3%', cursor: 'pointer' }} />
+                                        <FontAwesomeIcon icon={faInstagram} size="2x" style={{ marginLeft: '3%', cursor: 'pointer' }} />
+                                        <FontAwesomeIcon icon={faFacebook} size="2x" style={{ marginLeft: '3%', cursor: 'pointer' }} />
+                                        <FontAwesomeIcon icon={faTwitter} size="2x" style={{ marginLeft: '3%', cursor: 'pointer' }} />
                                     </Card.Body>
                                 </Card>
                                 <Card>
@@ -80,6 +93,11 @@ export default function Sobre() {
                                                 O foco de tudo é a organização e a disciplina,
                                                 devemos nos esforçar todos os dias para que possamos entregar algo de qualidade.
                                         </Card.Text>
+                                        <FontAwesomeIcon icon={faLinkedinIn} size="2x" style={{ marginLeft: '3%', cursor: 'pointer' }} />
+                                        <FontAwesomeIcon icon={faYoutube} size="2x" style={{ marginLeft: '3%', cursor: 'pointer' }} />
+                                        <FontAwesomeIcon icon={faInstagram} size="2x" style={{ marginLeft: '3%', cursor: 'pointer' }} />
+                                        <FontAwesomeIcon icon={faFacebook} size="2x" style={{ marginLeft: '3%', cursor: 'pointer' }} />
+                                        <FontAwesomeIcon icon={faTwitter} size="2x" style={{ marginLeft: '3%', cursor: 'pointer' }} />
                                     </Card.Body>
                                 </Card>
                             </CardDeck>
@@ -87,7 +105,7 @@ export default function Sobre() {
                     </Col>
                 </Row>
             </Container>
-           
+
         </div>
     )
 }

@@ -214,7 +214,7 @@ function Servicos() {
                     {produtos.modal}
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button href="/contato" variant="outline-success">Entrar em contato</Button>
+                    
                     <Button variant="outline-dark" onClick={fechaModal}>Sair</Button>
                 </Modal.Footer>
             </Modal>
@@ -227,7 +227,7 @@ function Servicos() {
                     {sonhos.modal}
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button href="/contato" variant="outline-success">Entrar em contato</Button>
+                    
                     <Button onClick={fechaModal} variant="outline-dark">Sair</Button>
                 </Modal.Footer>
             </Modal>
@@ -240,7 +240,7 @@ function Servicos() {
                     {facilidades.modal}
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button href="/contato" variant="outline-success">Entrar em contato</Button>
+                    
                     <Button onClick={fechaModal} variant="outline-dark">Sair</Button>
                 </Modal.Footer>
             </Modal>
@@ -253,7 +253,7 @@ function Servicos() {
                     {sobMedida.modal}
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button href="/contato" variant="outline-success">Entrar em contato</Button>
+                    
                     <Button onClick={fechaModal} variant="outline-dark">Sair</Button>
                 </Modal.Footer>
             </Modal>

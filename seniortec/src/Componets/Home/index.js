@@ -161,7 +161,6 @@ function Home() {
 
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="outline-success" href="/contato">Entrar em contato</Button>
                     <Button variant="outline-dark" onClick={fechaModal}>Sair</Button>
                 </Modal.Footer>
 
