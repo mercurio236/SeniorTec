@@ -18,6 +18,7 @@ export default function Rota() {
         <Route path="/servicos" component={Servicos} />
         <Route path="/sobre" component={Sobre} />
       </Switch>
+      
       <Footer/>
     </BrowserRouter>
   )

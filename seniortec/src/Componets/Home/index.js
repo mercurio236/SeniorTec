@@ -9,8 +9,7 @@ import ImgInt from '../../img/ideias.png';
 import ImgEvo from '../../img/evolucao.png';
 import CodigInt from '../../img/Codigo-inteligente.png';
 import ImgFoco from '../../img/foco.png';
-import Footer from '../../footer';
-
+import Chat from '../../chatbot';
 
 
 
@@ -18,6 +17,8 @@ function Home() {
     const [acaoModal, setAcaoModal] = useState(false);
     const [categoriaSelecionada, setCategoriaSelecionada] = useState([]);
     const [categorias, setCategorias] = useState([])
+
+    
 
     useEffect(() => {
 
@@ -166,7 +167,7 @@ function Home() {
 
             </Modal>
 
-            
+            <Chat/>
         </div>
     );
 
