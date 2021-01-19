@@ -10,23 +10,30 @@ const Bot = () => {
         floating: true
     }
 
-    const theme ={
-        botBubbleColor:'#000',
-        botFontColor:'#fff',
-        headerBgColor:'#000',
-        headerFontColor:'#fff',
-        background:'#fff'
+    const theme = {
+        botBubbleColor: '#000',
+        botFontColor: '#fff',
+        headerBgColor: '#000',
+        headerFontColor: '#fff',
+        background: '#fff'
     }
 
     const steps = [
         {
             id: "Bem Vindo",
-            message: "Olá, bem vindo a SeniorTec",
-            trigger: "Ajuda"
+            message: "Olá, bem vindo eu sou o assistente " +
+                "da SeniorTec qual seu nome?",
+            trigger: "identificacao"
         },
         {
-            id: 'Ajuda',
-            message: 'Em que podemos ajudar?',
+            id: 'identificacao',
+            user: true,
+            trigger: 'resposta'
+        },
+        {
+            id: 'resposta',
+            message: 'Olá {previousValue}, em que posso ajudar? ' +
+                'caso queira contratar nossos serviços pode entrar em contato.',
             trigger: 'Contato'
         },
         {
@@ -41,6 +48,11 @@ const Bot = () => {
                     value: 'Email',
                     label: 'E-mail',
                     trigger: 'email'
+                },
+                {
+                    value: 'Outra Coisa',
+                    label: 'Outra Coisa',
+                    trigger: 'outra'
                 }
             ]
         },
@@ -52,28 +64,68 @@ const Bot = () => {
         },
         {
             id: 'email',
-            message: 'seniortec@seniortec.com',
-            trigger: 'nome'
+            message: 'seniortec@hotmail.com',
+            trigger: 'Done'
+        },
+
+        {
+            id: 'outra',
+            message: 'Vou me esforçar para ajudar' +
+                'basta selecionar uma das opções',
+            trigger: 'outra opcao'
         },
         {
-            id:'nome',
-            user: true,
-            trigger:'ola'
+            id: 'outra opcao',
+            options: [
+                {
+                    value: 'sobre',
+                    label: 'Sobre',
+                    trigger: 'sobre'
+                },
+                {
+                    value: 'equipe',
+                    label: 'Equipe',
+                    trigger: 'equipe'
+                },
+                {
+                    value: 'contratar',
+                    label: 'Contratar nossa equipe',
+                    trigger: 'Contato'
+                }
+            ]
         },
         {
-            id:'ola',
-            message:"Ola {previousValue}",
-            trigger:'Done'
+            id: 'sobre',
+            message: "Então {previousValue}, nossa equipe e formada por profissionais de ponta " +
+                "sempre disposto a fazer o melhor para entregar tudo com qualidade",
+            trigger:'contratar'
         },
+        {
+            id:'contratar',
+            options: [
+                {
+                    value: 'Contratar Equipe',
+                    label: 'Contratar equipe',
+                    trigger: 'Contato'
+                }
+            ]
+        },
+        {
+            id:'equipe',
+            message:'Nossa equipe é formada pelos melhores profssinais do mercado'+
+            ' veja sobre a gente na aba sobre',
+            trigger:'Contato'
+        },
+        
         {
             id: "Done",
-            message: "Obrigado, tenha um otimo dia !!",
+            message: "Obrigado, estamos aguardando seu contato!! Até logo",
             end: true
         }
     ];
     return (
         <ThemeProvider theme={theme}>
-            <ChatBot steps={steps} {...config} headerTitle="SeniorTec"/>
+            <ChatBot steps={steps} {...config} headerTitle="SeniorTec" />
         </ThemeProvider>
     )
 }
