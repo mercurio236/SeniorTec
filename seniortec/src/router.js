@@ -7,7 +7,7 @@ import Footer from '../src/footer';
 import Home from './Componets/Home';
 import Servicos from './Componets/Servico';
 import Sobre from './Componets/Sobre';
-
+import Chat from './chatbot';
 
 export default function Rota() {
   return (
@@ -18,7 +18,7 @@ export default function Rota() {
         <Route path="/servicos" component={Servicos} />
         <Route path="/sobre" component={Sobre} />
       </Switch>
-      
+      <Chat/>
       <Footer/>
     </BrowserRouter>
   )

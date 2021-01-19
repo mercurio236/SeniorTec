@@ -9,7 +9,7 @@ import ImgInt from '../../img/ideias.png';
 import ImgEvo from '../../img/evolucao.png';
 import CodigInt from '../../img/Codigo-inteligente.png';
 import ImgFoco from '../../img/foco.png';
-import Chat from '../../chatbot';
+
 
 
 
@@ -167,7 +167,7 @@ function Home() {
 
             </Modal>
 
-            <Chat/>
+        
         </div>
     );
 
